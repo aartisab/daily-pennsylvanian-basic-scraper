@@ -53,7 +53,7 @@ if __name__ == "__main__":
     # Load daily event monitor
     loguru.logger.info("Loading daily event monitor")
     dem = daily_event_monitor.DailyEventMonitor(
-        "data/daily_pennsylvanian_headlines.json"
+        "daily-pennsylvanian-basic-scraper/data/daily_pennsylvanian_headlines.json"
     )
 
     # Run scrape
