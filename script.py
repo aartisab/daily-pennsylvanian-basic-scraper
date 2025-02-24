@@ -31,11 +31,32 @@ def scrape_data_point():
 
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        mostRecent = soup.find("div", class_= "story sidebar-story")
-        firstStory = mostRecent("div", class_= "story sidebar-story")
-        headline = firstStory[0].get_text(strip=True)
-        loguru.logger.info(f"Scraped 'Most Recent' headline: {headline}")
-        return headline
+        content_div = soup.find("div", id="content")
+
+        if not content_div:
+            print("ERROR: Could not find content div!")
+            return None
+
+        most_recent_section = content_div.find("div", class_="top-story-sidebar")
+
+        if not most_recent_section:
+            print("ERROR: Could not find 'Most Recent' section inside content!")
+            return None
+
+        stories = most_recent_section.find_all("div", class_="story sidebar-story")
+
+        if stories:
+            first_story = stories[0]
+            headline = first_story.get_text(strip=True)
+            print(f"Scraped 'Most Recent' headline: {headline}")
+            return headline
+
+    print("ERROR: Failed to find 'Most Recent' headline")
+        # mostRecent = soup.find("div", class_= "story sidebar-story")
+        # firstStory = mostRecent("div", class_= "story sidebar-story")
+        # headline = firstStory[0].get_text(strip=True)
+        # loguru.logger.info(f"Scraped 'Most Recent' headline: {headline}")
+        # return headline
             # loguru.logger.info("Could not find 'Most Recent' headline")
             # return None
         # target_element = soup.find("a", class_="frontpage-link")
