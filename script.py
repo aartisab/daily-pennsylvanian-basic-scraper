@@ -37,9 +37,9 @@ def scrape_data_point():
             firstStory = mostRecent("div", class_= "story sidebar-story")
             if firstStory:
                 headline = firstStory.get_text(strip=True)
-                logging.info(f"Scraped 'Most Recent' headline: {headline}")
+                loguru.logger.info(f"Scraped 'Most Recent' headline: {headline}")
                 return headline
-            logging.info("Could not find 'Most Recent' headline")
+            loguru.logger.info("Could not find 'Most Recent' headline")
             return None
         # target_element = soup.find("a", class_="frontpage-link")
         # data_point = "" if target_element is None else target_element.text
