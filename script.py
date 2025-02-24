@@ -39,7 +39,7 @@ def scrape_data_point():
         
         firstStory = stories[0]
         data_point = firstStory.get_text(strip=True)
-        print(f"Scraped 'Most Recent' headline: {headline}")
+        print(f"Scraped 'Most Recent' headline: {data_point}")
         return data_point
 
         # mostRecent = soup.find("div", class_= "story sidebar-story")
