@@ -1,5 +1,5 @@
 name: Debug File System Before Running Script
-    run: |
+  run: |
       echo "Current working directory:"
       pwd
       echo "Listing all files in repository:"
