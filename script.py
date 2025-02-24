@@ -31,27 +31,17 @@ def scrape_data_point():
 
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        content_div = soup.find("div", id="content")
+        content = soup.find("div", id="content")
 
-        if not content_div:
-            print("ERROR: Could not find content div!")
-            return None
+        mostRecent = content.find("div", class_="top-story-sidebar")
 
-        most_recent_section = content_div.find("div", class_="top-story-sidebar")
+        stories = mostRecent.find_all("div", class_="story sidebar-story")
+        
+        firstStory = stories[0]
+        data_point = firstStory.get_text(strip=True)
+        print(f"Scraped 'Most Recent' headline: {headline}")
+        return data_point
 
-        if not most_recent_section:
-            print("ERROR: Could not find 'Most Recent' section inside content!")
-            return None
-
-        stories = most_recent_section.find_all("div", class_="story sidebar-story")
-
-        if stories:
-            first_story = stories[0]
-            headline = first_story.get_text(strip=True)
-            print(f"Scraped 'Most Recent' headline: {headline}")
-            return headline
-
-    print("ERROR: Failed to find 'Most Recent' headline")
         # mostRecent = soup.find("div", class_= "story sidebar-story")
         # firstStory = mostRecent("div", class_= "story sidebar-story")
         # headline = firstStory[0].get_text(strip=True)
