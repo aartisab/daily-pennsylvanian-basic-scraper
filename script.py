@@ -32,15 +32,12 @@ def scrape_data_point():
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
         mostRecent = soup.find("div", class_= "story sidebar-story")
-
-        if mostRecent:
-            firstStory = mostRecent("div", class_= "story sidebar-story")
-            if firstStory:
-                headline = firstStory.get_text(strip=True)
-                loguru.logger.info(f"Scraped 'Most Recent' headline: {headline}")
-                return headline
-            loguru.logger.info("Could not find 'Most Recent' headline")
-            return None
+        firstStory = mostRecent("div", class_= "story sidebar-story")
+        headline = firstStory.get_text(strip=True)
+        loguru.logger.info(f"Scraped 'Most Recent' headline: {headline}")
+        return headline
+            # loguru.logger.info("Could not find 'Most Recent' headline")
+            # return None
         # target_element = soup.find("a", class_="frontpage-link")
         # data_point = "" if target_element is None else target_element.text
         # loguru.logger.info(f"Data point: {data_point}")
