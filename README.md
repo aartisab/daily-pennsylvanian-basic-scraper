@@ -1,3 +1,5 @@
+**Changes Made to the Scraper:  **  Changes were made to scrape the top headline in the "Most Recent" section instead of the Main Headline of the DP.  This decision was made in order to get the most recent news as I felt that is valuable to know since we are part of an everchanging university where news comes in quickly.
+
 # Basic Git Scraper Template
 
 This template provides a starting point for **git scraping**—the technique of scraping data from websites and automatically committing it to a Git repository using workflows, [coined by Simon Willison](https://simonwillison.net/2020/Oct/9/git-scraping/).
