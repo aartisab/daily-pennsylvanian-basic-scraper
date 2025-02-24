@@ -1,12 +1,3 @@
-name: Debug File System Before Running Script
-  run: |
-      echo "Current working directory:"
-      pwd
-      echo "Listing all files in repository:"
-      ls -R
-      echo "Checking if 'data' directory exists:"
-      ls -lah data/ || echo "Data directory not found!"
-
 on:
   push:
     branches: [main]
@@ -53,6 +44,16 @@ jobs:
         run: |
           touch Pipfile
           pipenv install --deploy --dev
+      - name: Debug File System Before Running Script
+        run: |
+            echo "Current working directory:"
+            pwd
+            echo "Listing all files in repository:"
+            ls -R
+            echo "Checking if 'data' directory exists:"
+            ls -lah data/ || echo "Data directory not found!"
+
+
 
       - name: 🕵️‍♂️ Scrape content and output
         run: |
