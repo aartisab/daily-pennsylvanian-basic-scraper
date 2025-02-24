@@ -42,18 +42,6 @@ def scrape_data_point():
         print(f"Scraped 'Most Recent' headline: {data_point}")
         return data_point
 
-        # mostRecent = soup.find("div", class_= "story sidebar-story")
-        # firstStory = mostRecent("div", class_= "story sidebar-story")
-        # headline = firstStory[0].get_text(strip=True)
-        # loguru.logger.info(f"Scraped 'Most Recent' headline: {headline}")
-        # return headline
-            # loguru.logger.info("Could not find 'Most Recent' headline")
-            # return None
-        # target_element = soup.find("a", class_="frontpage-link")
-        # data_point = "" if target_element is None else target_element.text
-        # loguru.logger.info(f"Data point: {data_point}")
-        # return data_point
-
 
 if __name__ == "__main__":
 
@@ -87,6 +75,8 @@ if __name__ == "__main__":
         dem.add_today(data_point)
         dem.save()
         loguru.logger.info("Saved daily event monitor")
+        with open("data/daily_pennsylvanian_headlines.json", "r") as f:
+            print(f"Updated JSON: {f.read()}")
 
     def print_tree(directory, ignore_dirs=[".git", "__pycache__"]):
         loguru.logger.info(f"Printing tree of files/dirs at {directory}")
